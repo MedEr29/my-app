@@ -2,7 +2,7 @@ pipeline {
     agent any
     tools {
         git 'Default' // تأكد من إعداد Git Tool
-        jdk 'JDK11'   // تأكد من إعداد JDK (إذا كان مشروع Java)
+        jdk 'JDK17'   // تأكد من إعداد JDK (إذا كان مشروع Java)
     }
     stages {
         stage('Checkout') {
