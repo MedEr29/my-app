@@ -3,9 +3,10 @@ pipeline {
     stages {
         stage('Code Analysis') {
             steps {
-                withSonarQubeEnv('SonarQube') {
-                    bat 'sonar-scanner'
+            withSonarQubeEnv('SonarQube') {
+                    bat 'sonar-scanner -Dsonar.projectKey=my-app -Dsonar.sources=src -Dsonar.host.url=http://sonarqube-server-url'
                 }
+
             }
         }
     }
