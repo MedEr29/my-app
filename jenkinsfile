@@ -1,0 +1,12 @@
+pipeline {
+    agent any
+    stages {
+        stage('Code Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh 'sonar-scanner'
+                }
+            }
+        }
+    }
+}
