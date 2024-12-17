@@ -1,12 +1,20 @@
 pipeline {
     agent any
+    tools {
+        git 'Default' // تأكد من إعداد Git Tool
+        jdk 'JDK11'   // تأكد من إعداد JDK (إذا كان مشروع Java)
+    }
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Code Analysis') {
             steps {
-            withSonarQubeEnv('SonarQube') {
-                    bat 'sonar-scanner -Dsonar.projectKey=my-app -Dsonar.sources=src -Dsonar.host.url=http://sonarqube-server-url'
+                withSonarQubeEnv('SonarQube') {
+                    bat 'sonar-scanner.bat -Dsonar.projectKey=my-app -Dsonar.sources=src -Dsonar.host.url=http://sonarqube-server-url'
                 }
-
             }
         }
     }
