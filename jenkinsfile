@@ -1,10 +1,17 @@
 pipeline {
     agent any
     stages {
+        stage('Checkout Code') {
+            steps {
+                // جلب الكود من مستودع Git
+                checkout scm
+            }
+        }
         stage('Code Analysis') {
             steps {
+                // تشغيل تحليل الكود
                 withSonarQubeEnv('SonarQube') {
-                    bat "sonar-scanner.bat -Dsonar.projectKey=my-app -Dsonar.sources=src -Dsonar.host.url=http://localhost:9000"
+                    bat 'C:\Users\Eloua\sonar-scanner-6.2.1.4610-windows-x64\bin\sonar-scanner.bat -Dsonar.projectKey=my-app -Dsonar.sources=src -Dsonar.host.url=http://localhost:9000'
                 }
             }
         }
